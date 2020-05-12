@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:infiniteCard="http://schemas.android.com/apk/res-auto">
+
+
+    <com.bakerj.infinitecards.InfiniteCardView
+        android:id="@+id/card_scroller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        infiniteCard:animDuration="1000"
+        infiniteCard:cardRatio="1.5"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/view_card_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_scroller"
+        android:text="next"
+        android:layout_centerHorizontal="true"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/view_card_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_scroller"
+        android:text="prev"
+        android:layout_toLeftOf="@+id/view_card_next"
+        android:layout_centerHorizontal="true"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/view_card_change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_scroller"
+        android:text="change"
+        android:layout_toRightOf="@+id/view_card_next"
+        android:layout_centerHorizontal="true"
+        />
+
+
+
+
+
+</RelativeLayout>

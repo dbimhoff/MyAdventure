@@ -1,8 +1,12 @@
 package webdev.myadventure;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private static String TAG = "MainActLog";
 
     BottomNavigationView bottomNav;
+    ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +29,19 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNav = findViewById(R.id.bottom_nav);
         initBottomNav();
+        viewPager = findViewById(R.id.view_pager);
+        initViewPager();
 
         CardFragment frag = new CardFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.fragment_holder, frag);
         transaction.commit();
+    }
+
+    private void initViewPager() {
+        myFragmentStateAdapter adapter = new myFragmentStateAdapter(this);
+
     }
 
     private void initBottomNav() {
@@ -61,4 +73,27 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
     }
+
+
+    class myFragmentStateAdapter extends FragmentStateAdapter {
+
+        public myFragmentStateAdapter(Fragment fragment) {
+            super(fragment);
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            //TODO change so it makes different fragments here
+            Fragment frag = new CardFragment();
+            return frag;
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 4;
+        }
+    }
+
 }

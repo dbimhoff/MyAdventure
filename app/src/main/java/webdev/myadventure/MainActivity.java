@@ -3,18 +3,24 @@ package webdev.myadventure;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import webdev.myadventure.Modules.CardFragment;
+import webdev.myadventure.Modules.EventFragment;
+import webdev.myadventure.Modules.ProfileFragment;
+import webdev.myadventure.Modules.QRScannerFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static String TAG = "MainActLog";
@@ -32,44 +38,50 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         initViewPager();
 
-        CardFragment frag = new CardFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.fragment_holder, frag);
-        transaction.commit();
     }
 
     private void initViewPager() {
         myFragmentStateAdapter adapter = new myFragmentStateAdapter(this);
+        viewPager.setAdapter(adapter);
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 0)
+                    bottomNav.setSelectedItemId(R.id.cards);
+                else if(position ==1)
+                    bottomNav.setSelectedItemId(R.id.events);
+                else if(position == 2)
+                    bottomNav.setSelectedItemId(R.id.qr_scanner);
+                else
+                    bottomNav.setSelectedItemId(R.id.profile);
+            }
+        });
+
+
+
+
 
     }
 
     private void initBottomNav() {
-
-
-
         bottomNav.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
         bottomNav.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.cards:
-                    Log.i(TAG, "onNavigationItemSelected: Cards Clicked");
-                    //card icon clicked
+                    viewPager.setCurrentItem(0);
                     return true;
                 case R.id.events:
-                    //events icon clicked
-                    Log.i(TAG, "onNavigationItemSelected: Events clicked");
+                    viewPager.setCurrentItem(1);
                     return true;
                 case R.id.qr_scanner:
-                    //qr scanner clicked
-                    Log.i(TAG, "onNavigationItemSelected: QR Scanner clicked");
+                    viewPager.setCurrentItem(2);
                     return true;
                 case R.id.profile:
-                    //profile clicked
-                    Log.i(TAG, "onNavigationItemSelected: Profile clicked");
+                    viewPager.setCurrentItem(3);
                     return true;
             }
-
             return false;
         });
     }
@@ -77,19 +89,23 @@ public class MainActivity extends AppCompatActivity {
 
     class myFragmentStateAdapter extends FragmentStateAdapter {
 
-        public myFragmentStateAdapter(Fragment fragment) {
-            super(fragment);
+        public myFragmentStateAdapter(FragmentActivity fragmentActivity) {
+            super(fragmentActivity);
         }
 
         @NonNull
         @Override
         public Fragment createFragment(int position) {
             //TODO change so it makes different fragments here
-            Fragment frag = new CardFragment();
-            return frag;
-
+            if(position == 0)
+                return new CardFragment();
+            else if(position == 1)
+                return new EventFragment();
+            else if(position ==2)
+                return new QRScannerFragment();
+            else
+                return new ProfileFragment();
         }
-
         @Override
         public int getItemCount() {
             return 4;

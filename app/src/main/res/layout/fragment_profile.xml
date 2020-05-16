@@ -2,14 +2,74 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#C8102E"
     android:orientation="vertical">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:text="Iowa State University"
+    android:autoSizeTextType="uniform"
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:text="Adventure Card"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:autoSizeTextType="uniform"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/yellow"
+        android:layout_marginTop="10dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/person"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="Johnny B. Goodman"
+        />
+    <TextView
+        android:id="@+id/profile_city"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Colfax, IA"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:autoSizeTextType="uniform"
+        />
 
     <ImageView
         android:layout_width="wrap_content"
+        android:layout_height="393dp"
+        android:padding="40dp"
+        android:src="@drawable/example_qr_code" />
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/person"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        />
+        android:text="Hello"
+/>
+
+
 
 </LinearLayout>

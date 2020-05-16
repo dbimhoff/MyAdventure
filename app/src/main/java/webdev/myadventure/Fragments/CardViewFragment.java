@@ -56,15 +56,15 @@ public class CardViewFragment extends Fragment {
         AppCompatButton prev = root.findViewById(R.id.view_card_prev);
         AppCompatButton change = root.findViewById(R.id.view_card_change);
 
-        change.setOnClickListener((View v) -> {
-            LittleMangoFragment frag = new LittleMangoFragment();
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.fragment_holder, frag);
-            transaction.addToBackStack(null);
-            transaction.commit();
-
-        });
+//        change.setOnClickListener((View v) -> {
+//            LittleMangoFragment frag = new LittleMangoFragment();
+//            FragmentManager fm = getFragmentManager();
+//            FragmentTransaction transaction = fm.beginTransaction();
+//            transaction.replace(R.id.fragment_holder, frag);
+//            transaction.addToBackStack(null);
+//            transaction.commit();
+//
+//        });
 
         next.setOnClickListener((View v) -> {
             setStyle4();
